@@ -6,18 +6,27 @@
 
 
 template <typename T>
-class shared_ptr
+class SharedPtr
 {
 public:
-    explicit shared_ptr(T* ptr);
+    explicit SharedPtr(T* ptr = NULL);
+    SharedPtr(SharedPtr<T> &sp);
+    ~SharedPtr();
+
+    T &operator*() const;
+    T &operator->() const;
+
+    SharedPtr<T> &operator=(const T *ptr);
+
+
 
 private:
-    T* m_Object;
+    T* m_ptr;
     ReferenceCount* m_ReferenceCount;
 };
 
 template<typename T>
-shared_ptr<T>::shared_ptr(T *ptr): m_Object(ptr), m_ReferenceCount(new ReferenceCount())
+SharedPtr<T>::SharedPtr(T *ptr): m_ptr(ptr), m_ReferenceCount(new ReferenceCount())
 {
     if(ptr)
         m_ReferenceCount->Increment();

@@ -8,13 +8,13 @@ public:
 
     void Increment();
 
-    int Decrement();
+    unsigned int Decrement();
 
-    int GetCount() const;
+    unsigned int GetCount() const;
 
 
 private:
-    int m_RefCount;
+    unsigned int m_RefCount;
 };
 
 inline void ReferenceCount::Increment()
@@ -22,12 +22,12 @@ inline void ReferenceCount::Increment()
     ++m_RefCount;
 }
 
-inline int ReferenceCount::Decrement()
+inline unsigned int ReferenceCount::Decrement()
 {
     return --m_RefCount;
 }
 
-int ReferenceCount::GetCount() const
+unsigned int ReferenceCount::GetCount() const
 {
     return m_RefCount;
 }
